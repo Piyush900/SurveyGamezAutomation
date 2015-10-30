@@ -1,0 +1,47 @@
+package Survey;
+
+import java.awt.Desktop.Action;
+
+import org.junit.BeforeClass;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
+
+public class SurveyGame {
+
+	public ChromeDriver driver;
+	
+	/*@BeforeMethod
+	public static void Beforemethod()
+	{
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\piyush\\workspace\\SurveyTrail\\Lib\\chromedriver.exe");
+		ChromeDriver driver=new ChromeDriver();
+		driver.get("http://stg.surveygamez.com/sgs/login?");
+	}*/
+	
+	@Test
+	public void Test()
+	
+	{
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\piyush\\workspace\\SurveyTrail\\Lib\\chromedriver.exe");
+		ChromeDriver driver=new ChromeDriver();
+		driver.get("http://stg.surveygamez.com/sgs/login?");
+		//driver.findElementByCssSelector("html body.sgs-bkgrnd div.container div.jumbotron form#loginForm div.form-group input#email.form-control").sendKeys("piyush.mishra90@gmail.com");
+		//driver.findElementByXPath("/html/body/div[3]/div[2]/form/div[1]/input").sendKeys("piyush.mishra90@gmail.com");
+		driver.findElementById("email").sendKeys("piyush.mishra90@gmail.com");
+		driver.findElementById("pwd").sendKeys("P@iyush90");
+		driver.findElementByXPath("/html/body/div[3]/div[2]/form/button").click();
+		//driver.findElementById("Sign in").click();
+		driver.findElementByCssSelector("html body.fuelux div.container div.row div.col-xs-9 div.row form#command div.col-xs-3 button.btn.btn-primary").click();
+		driver.findElementByXPath("/html/body/div[6]/div/div[2]/div/div/div/div/div[1]/div[2]/div/form/div[1]/input").sendKeys("Hello World");
+		driver.findElementByXPath("/html/body/div[6]/div/div[2]/div/div/div/div/div[1]/div[2]/div/form/div[2]/button").click();
+		Actions act = new Actions(driver);
+		act.dragAndDrop(driver.findElementByXPath("/html/body/div[3]/div[2]/div[1]/div[2]/ul/li[1]/a/div/span"),(driver.findElementByXPath("/html/body/div[3]/div[2]/div[2]/div/div[1]/center/h3/small")));
+
+//		Action dragAndDrop = builder.clickAndHold(("/html/body/div[3]/div[2]/div[1]/div[2]/ul/li[1]/a/div/span").moveToElement("/html/body/div[3]/div[2]/div[2]/div/div[1]/center/h3/small").release("/html/body/div[3]/div[2]/div[2]/div/div[1]/center/h3/small").build();
+
+		
+				
+	}
+}
