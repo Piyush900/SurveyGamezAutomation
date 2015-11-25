@@ -1,27 +1,22 @@
-package Survey;
+package SurveyGamez;
 
 import java.awt.AWTException;
 import java.awt.Desktop.Action;
-import java.awt.datatransfer.StringSelection;
 import java.awt.Robot;
 import java.awt.Toolkit;
-import java.awt.Event;
+import java.awt.datatransfer.StringSelection;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.awt.event.KeyEvent;
 
-import org.junit.BeforeClass;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-
-import com.thoughtworks.selenium.webdriven.commands.KeyEvent;
-
-import org.testng.annotations.*;
-
-public class SurveyGame {
+public class SurveyGamezTrial {
 
 	public ChromeDriver driver;
 	
@@ -37,15 +32,19 @@ public class SurveyGame {
 	public void Test() throws InterruptedException, AWTException
 	
 	{
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\piyush\\workspace\\SurveyTrail\\Lib\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Piyush\\workspace\\SurveyGamezAutomation\\Lib\\chromedriver.exe");
 		ChromeDriver driver=new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
 		
-		driver.get("http://stg.surveygamez.com/sgs/login?");
+		driver.get("http://stg.surveygamez.com/login?");
+		//driver.get("http://192.168.1.2:8080/login");
 		//driver.findElementByCssSelector("html body.sgs-bkgrnd div.container div.jumbotron form#loginForm div.form-group input#email.form-control").sendKeys("piyush.mishra90@gmail.com");
 		//driver.findElementByXPath("/html/body/div[3]/div[2]/form/div[1]/input").sendKeys("piyush.mishra90@gmail.com");
+		//driver.findElementById("email").sendKeys("demo@sg.com");
 		driver.findElementById("email").sendKeys("piyush.mishra90@gmail.com");
 		driver.findElementById("pwd").sendKeys("P@iyush90");
+		
+		//driver.findElementById("pwd").sendKeys("Sg1234567");
 		Thread.sleep(2000);
 		driver.findElementByXPath("/html/body/div[3]/div[2]/form/button").click();//sign in
 		Thread.sleep(2000);
@@ -75,35 +74,96 @@ public class SurveyGame {
           Thread.sleep(2000);
          /* WebElement frame =driver.switchTo().activeElement();
           frame.sendKeys("C:\\Users\\piyush\\Desktop\\Flash Issues\\a.jpg");*/
-          StringSelection ss=new StringSelection("C:\\Users\\piyush\\Desktop\\Flash Issues\\a.jpg");
+          
+   //    Upload image       
+          StringSelection ss=new StringSelection("D:\\Image\\Icon.jpg");
           Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss,null);
           
           Robot robot = new Robot();
+          Thread.sleep(1000);
            robot.keyPress(java.awt.event.KeyEvent.VK_ENTER);
-           robot.keyPress(java.awt.event.KeyEvent.VK_ENTER);
+           robot.keyRelease(java.awt.event.KeyEvent.VK_ENTER);
            robot.keyPress(java.awt.event.KeyEvent.VK_CONTROL);
            robot.keyPress(java.awt.event.KeyEvent.VK_V);
-           robot.keyPress(java.awt.event.KeyEvent.VK_V);
-           robot.keyPress(java.awt.event.KeyEvent.VK_CONTROL);
-           robot.keyPress(java.awt.event.KeyEvent.VK_ENTER);
-           robot.keyPress(java.awt.event.KeyEvent.VK_ENTER);
-           
-           
-           
-//          act.sendKeys(Keys.ENTER);
           
+           robot.keyRelease(java.awt.event.KeyEvent.VK_CONTROL);
+           robot.keyRelease(java.awt.event.KeyEvent.VK_V);
+           Thread.sleep(1000);
+           
+           robot.keyPress(java.awt.event.KeyEvent.VK_ENTER);
+           robot.keyRelease(java.awt.event.KeyEvent.VK_ENTER);
+             Thread.sleep(2000);
+           // Click Upload button  
+         driver.findElementByCssSelector("html body.fuelux.modal-open div.modal.fade.update-media.in div.modal-dialog div.modal-content div.modal-body form#UploadForm input.btn.btn-primary").click();
+         
           Thread.sleep(2000);
-          driver.findElementByCssSelector("html body.fuelux.modal-open div.modal.fade.update-media.in div.modal-dialog div.modal-content div.modal-body form#UploadForm input.btn.btn-primary").click();
           
-         /* Thread.sleep(2000);
-          driver.findElementByCssSelector("html body.fuelux.modal-open div.modal.fade.update-media.in div.modal-dialog div.modal-content div.modal-body form#UploadForm input.btn.btn-primary").click();*/
+          driver.findElementByXPath("/html/body/div[3]/div[2]/div[2]/div/div[1]/div/div[2]/div/div[1]/form/div[3]/div[1]/div/div[2]/textarea").sendKeys("Which Automation Tool is best ?");
+          // driver.findElementByCssSelector("html body.fuelux div#list-questions div div.col-xs-9.well.well-lg.overflowscroll.min-container-all div#question_area.question-list.connected div.list-group.connected.ui-sortable.questionlist.welcome-question.question-container div#6d62f41d.questionContent.panel-body.pull-center.panel.panel-default div#informationQuestionTab.questionTab div.tab-content div#edit1.tab-pane.active form#welcomeQuestionForm div.col-xs-12.text-muted.text-muted-less-margin div.col-xs-7 div.form-group div.text-muted.text-muted-less-margin textarea#question-verbiage.form-control").sendKeys("Which automation tool is best");
           Thread.sleep(2000);
-          driver.findElementByCssSelector("html body.fuelux div#list-questions div div.col-xs-9.well.well-lg.overflowscroll.min-container-all div#question_area.question-list.connected div.list-group.connected.ui-sortable.questionlist.welcome-question.question-container div#c53415cd.questionContent.panel-body.pull-center.panel.panel-default div#informationQuestionTab.questionTab div.tab-content div#edit1.tab-pane.active form#welcomeQuestionForm div.col-xs-12.text-muted.text-muted-less-margin div.col-xs-7 div.form-group div.text-muted.text-muted-less-margin textarea#question-verbiage.form-control").sendKeys("Which Automation tools is best to use ? ");
-          Thread.sleep(2000);
-          driver.findElementByCssSelector("html body.fuelux div#list-questions div div.col-xs-9.well.well-lg.overflowscroll.min-container-all div#question_area.question-list.connected div.list-group.connected.ui-sortable.questionlist.welcome-question.question-container div#c53415cd.questionContent.panel-body.pull-center.panel.panel-default div#informationQuestionTab.questionTab div.tab-content div#edit1.tab-pane.active form#welcomeQuestionForm div.col-xs-12.text-muted.text-muted-less-margin div.col-xs-7 div.form-group div.text-muted.text-muted-less-margin textarea#question-description.form-control").sendKeys("Selenium is the best automation tool");
-          Thread.sleep(2000);
-          driver.findElementByCssSelector("html body.fuelux div#list-questions div div.col-xs-9.well.well-lg.overflowscroll.min-container-all div#question_area.question-list.connected div.list-group.connected.ui-sortable.questionlist.welcome-question.question-container div#c53415cd.questionContent.panel-body.pull-center.panel.panel-default div#informationQuestionTab.questionTab button.btn.btn-primary.save-question").click();
-		
-				
+          driver.findElementByXPath("/html/body/div[3]/div[2]/div[2]/div/div[1]/div/div[2]/div/div[1]/form/div[3]/div[1]/div/div[6]/textarea").sendKeys("Selenium is the best Automation tools");
+         Thread.sleep(2000);
+        // driver.findElementByXPath("/html/body/div[3]/div[2]/div[2]/div/div[1]/div/div[2]/button[1]").isSelected();
+       //  driver.findElement(By.name("Save")).sendKeys(Keys.ENTER);
+         
+        // driver.findElementByXPath("/html/body/div[3]/div[2]/div[2]/div/div[1]/div/div[2]/button[1]").click();
+         //driver.findElementByCssSelector("html body.fuelux div#list-questions div div.col-xs-9.well.well-lg.overflowscroll.min-container-all div#question_area.question-list.connected div.list-group.connected.ui-sortable.questionlist.welcome-question.question-container div#e2483029.questionContent.panel-body.pull-center.panel.panel-default div#informationQuestionTab.questionTab button.btn.btn-primary.save-question").click();
+         
+      //   driver.findElementByName("Save").click();
+         
+         //driver.findElementByXPath("/html/body/div[3]/div[2]/div[2]/div/div[1]/div/div[2]/button[2]").click();
+     //    driver.findElementByClassName("save-question").click();
+        // driver.findElementByCssSelector("html body.fuelux div#list-questions div div.col-xs-9.well.well-lg.overflowscroll.min-container-all div#question_area.question-list.connected div.list-group.connected.ui-sortable.questionlist.welcome-question.question-container div#a7f6f4dd.questionContent.panel-body.pull-center.panel.panel-default div#informationQuestionTab.questionTab button.btn.btn-primary.save-question").click();;
+       //  /html/body/div[3]/div[2]/div[2]/div/div[1]/div/div[2]/button[1]
+       //  WebElement element = driver.findElementByCssSelector("div.welcome-question>div.questionContent>div#informationQuestionTab>button.save-question");
+       //List<WebElement> saveElementList=driver.findElementsByCssSelector("html body.fuelux div#list-questions div div.col-xs-9.well.well-lg.overflowscroll.min-container-all div#question_area.question-list.connected div.list-group.connected.ui-sortable.questionlist.welcome-question.question-container div#a7f6f4dd.questionContent.panel-body.pull-center.panel.panel-default div#informationQuestionTab.questionTab button.btn.btn-primary.save-question");
+       
+         
+         //assumption that only one save button is displayed on whole page
+       List<WebElement> saveElementList=driver.findElementsByClassName("save-question");
+       saveElementList=saveElementList==null?new ArrayList<WebElement>():saveElementList;
+       System.out.println(saveElementList.size());
+       for(WebElement webEle: saveElementList){
+    	   try{
+    		   if(webEle.isDisplayed()){
+    			  System.out.println(webEle.getTagName());
+    			  System.out.println(webEle.getText());
+    			 System.out.println(webEle.getSize());
+    			 System.out.println(webEle.getLocation());
+    			 webEle.sendKeys(Keys.ENTER); 
+    			 //webEle.click();
+    		   }
+    	   }catch(Exception e){
+    		   //System.out.println(e.getMessage());
+    	   }
+    	   
+       }
+       
+      
+        
+       /*  WebElement webElement = driver.findElementByXPath("");
+         webElement.sendKeys(Keys.TAB);
+         webElement.sendKeys(Keys.TAB);
+         webElement.sendKeys(Keys.TAB);
+         webElement.sendKeys(Keys.TAB);
+         webElement.sendKeys(Keys.TAB);
+         webElement.sendKeys(Keys.ENTER);    */     
+       
+       //element.getCssValue("margin-left");
+         
+        // driver.findElementById("welcomeSave").click();
+       //  act.moveToElement(element).click().perform();
+       
+
+        /* Actions act1=new Actions(driver);
+         act1.sendKeys(Keys.TAB).perform();
+         act1.sendKeys(Keys.TAB).perform();
+         act1.sendKeys(Keys.TAB).perform();
+         act1.sendKeys(Keys.TAB).perform();
+         act1.sendKeys(Keys.TAB).perform();
+         act1.sendKeys(Keys.ENTER).perform();*/
+         
+         
+         
 	}
 }
